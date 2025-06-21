@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar"; // 1. Import the Navbar component
+import Navbar from "./components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,12 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
+      {/*
+        THE FIX IS HERE: We apply the font variables to the className.
+        Using a template literal (backticks ``) makes it easy to combine them.
+      */}
+      <body
+        className={`min-h-screen flex flex-col ${geistSans.variable} ${geistMono.variable}`}
+      >
         <Navbar />
-
-        {/* The <main> tag will now be a direct flex child,
-          allowing it to grow.
-        */}
         {children}
       </body>
     </html>
