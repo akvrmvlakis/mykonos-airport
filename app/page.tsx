@@ -7,19 +7,11 @@ export default function Home() {
     // because of the `flex-1` in our layout. It is also a flex column.
     <main className="flex-1 flex flex-col">
       {/*
-        KEY CHANGE: We've simplified the structure. This single <div> is now
-        our entire hero section.
-
-        1. `flex-1`: This makes the hero section itself grow to fill ALL of the
-           vertical space inside `<main>`. This is what gives it height.
-        2. `flex flex-col`: Makes it a vertical flex container for its own content.
-        3. `justify-center`: **This will now work** because the div has a defined
-           height from `flex-1`. It will center the content block vertically.
-        4. `items-center`: Centers the content block horizontally.
-        5. `pt-24 pb-12`: The crucial top padding to clear the navbar, plus some
-           bottom padding for balance.
+        This single <div> is now our entire hero section.
       */}
-      <div className="flex-1 flex flex-col justify-center items-center text-center px-4 pt-24 pb-12 bg-[linear-gradient(207.86deg,_#2A54EF,_#234BD4,_#113286,_#0B2146)]">
+
+      {/* THE FIX: Added min-h-[100dvh] to fix mobile viewport height */}
+      <div className="flex-1 flex flex-col justify-center items-center text-center px-4 pt-24 pb-12 bg-[linear-gradient(207.86deg,_#2A54EF,_#234BD4,_#113286,_#0B2146)] min-h-[100dvh]">
         {/*
           This inner container is ONLY for setting a max-width on your content
           and adding the vertical space between the items.
@@ -33,7 +25,8 @@ export default function Home() {
           </div>
 
           {/* --- Middle Element --- */}
-          <div className="grid place-items-end">
+          <div className="grid place-items-end -mb-4">
+            {/* This image is moved UP by 4rem (64px) */}
             <Image
               className="-translate-y-16 z-0"
               src="/images/travel-information-vector.svg"
@@ -42,8 +35,9 @@ export default function Home() {
               alt="Travel information map icon"
             />
 
+            {/* This image is also moved UP, contributing to the empty space */}
             <Image
-              className="-translate-y-6 -translate-x-0 z-10 row-start-1 col-start-1"
+              className="-translate-y-6 z-10 row-start-1 col-start-1"
               src="/images/travel-guide-vector.svg"
               width={95}
               height={94}
@@ -59,8 +53,8 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Add these 3 classes to the parent div */}
-          <div>
+          {/* --- WhatsApp Button --- */}
+          <div className="flex self-start">
             <div className="inline-flex items-center gap-3 bg-white rounded-xl p-1">
               <Image
                 src="/images/whatsapp.svg"
