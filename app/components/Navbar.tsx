@@ -176,7 +176,7 @@ export default function Navbar() {
                 </DesktopNavLink>
               ))}
             </nav>
-            <div className="relative w-[115px] h-[45px] xl:w-[125px] xl:h-[55px]">
+            <div className="relative w-[105px] h-[35px] xl:w-[125px] xl:h-[55px]">
               <Link href="https://apps.apple.com/gr/app/aegean-taxi-ride-app/id6447252101">
                 <Image
                   src={appstoreIconSrc}
