@@ -33,20 +33,17 @@ const DesktopNavLink = ({
   href,
   children,
   isHomePage,
-  isScrolled, // Pass down the scrolled state
 }: {
   href: string;
   children: React.ReactNode;
   isHomePage: boolean;
-  isScrolled: boolean;
 }) => {
-  const showDarkText = !isHomePage || isScrolled;
-  const linkColor = showDarkText ? "text-gray-700" : "text-white";
-  const hoverBg = showDarkText ? "hover:bg-gray-100" : "hover:bg-white/10";
+  const linkColor = isHomePage ? "text-white" : "text-gray-700";
+  const hoverBg = isHomePage ? "hover:bg-white/10" : "hover:bg-gray-100";
   return (
     <Link
       href={href}
-      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${linkColor} ${hoverBg}`}
+      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${linkColor} ${hoverBg}`}
     >
       {children}
     </Link>
@@ -60,38 +57,7 @@ export default function Navbar() {
   // --- STATE FOR MOBILE MENU ---
   const [isOpen, setIsOpen] = useState(false);
 
-  // --- STATE FOR SCROLL EFFECT ---
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // --- EFFECT TO HANDLE SCROLLING ON HOMEPAGE ---
-  useEffect(() => {
-    const handleScroll = () => {
-      // Set state to true if user has scrolled more than 50px, false otherwise.
-      // You can adjust the "50" to a different value to change the trigger point.
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    // We only want to add this scroll listener on the homepage.
-    if (isHomePage) {
-      window.addEventListener("scroll", handleScroll);
-      // Call handler once on mount to set initial state
-      handleScroll();
-    }
-
-    // Cleanup function to remove the event listener when the component unmounts
-    // or when the user navigates away from the homepage.
-    return () => {
-      if (isHomePage) {
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, [isHomePage]); // The effect depends on whether it's the homepage or not.
-
-  // --- EFFECT TO PREVENT SCROLLING WHEN MOBILE MENU IS OPEN ---
+  // --- PREVENT SCROLLING WHEN MENU IS OPEN ---
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("overflow-hidden");
@@ -103,15 +69,11 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  // --- COMBINED LOGIC FOR NAVBAR APPEARANCE ---
-  // The navbar should be solid if we are NOT on the homepage, OR if we ARE and have scrolled.
-  const showSolidNav = !isHomePage || isScrolled;
-
-  const navTheme = showSolidNav ? "dark" : "light";
-
-  const baseNavClasses =
-    "fixed w-full top-0 py-1 z-30 transition-all duration-300 ease-in-out";
-  const backgroundClasses = showSolidNav ? "bg-white" : "bg-transparent";
+  const navTheme = isHomePage ? "light" : "dark";
+  // User's changes to navClasses preserved
+  const navClasses = isHomePage
+    ? "absolute py-1 z-30"
+    : "relative py-1 bg-white";
 
   const menuIconSrc =
     navTheme === "light"
@@ -141,13 +103,17 @@ export default function Navbar() {
 
   return (
     <>
+      {/* --- MAIN NAVBAR --- */}
       <nav
-        className={`${baseNavClasses} ${backgroundClasses} ${
-          showSolidNav ? "text-black" : "text-white"
+        className={`w-full ${navClasses} ${
+          isHomePage ? "text-white" : "text-black"
         }`}
       >
-        <div className="max-w-screen-2xl mx-auto flex items-center justify-between px-4 py-2 xl:py-4">
+        {/* Added md:py-4 for more vertical padding on desktop */}
+        <div className="max-w-screen-2xl mx-auto flex items-center justify-between px-4 py-2 md:py-4">
+          {/* --- LOGO (On the far left for all screen sizes) --- */}
           <div className="flex-shrink-0">
+            {/* Removed gap-2 to make the logo and polygon stick together */}
             <Link href="/" className="flex items-center">
               <Image
                 src={logoPolygonSrc}
@@ -155,28 +121,36 @@ export default function Navbar() {
                 height={20}
                 alt="Aegean Taxi Logo Polygon"
               />
-              <Image
-                src={logoSrc}
-                width={156}
-                height={24}
-                alt="Aegean Taxi Logo"
-              />
+              {/* Logo text image is now responsive */}
+              <div className="relative w-[150px] h-[22px] md:w-[156px] md:h-[24px] -ms-2 xl:-ms-1">
+                <Image
+                  src={logoSrc}
+                  alt="Aegean Taxi Logo"
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
             </Link>
           </div>
+
+          {/* --- RIGHT SECTION (All other controls) --- */}
           <div className="flex items-center gap-4">
-            <nav className="hidden xl:flex items-center gap-4">
+            {/* Desktop Navigation (hidden on mobile) */}
+            <nav className="hidden md:flex items-center gap-4">
               {menuItems.map((item) => (
                 <DesktopNavLink
                   key={item.href}
                   href={item.href}
                   isHomePage={isHomePage}
-                  isScrolled={isScrolled} // Pass state to link component
                 >
                   {item.label}
                 </DesktopNavLink>
               ))}
             </nav>
-            <div className="relative w-[105px] h-[35px] xl:w-[125px] xl:h-[55px]">
+
+            {/* App Store Icon */}
+            {/* Added a left margin to ensure space on all builds */}
+            <div className="relative w-[115px] h-[45px] md:w-[125px] md:h-[55px] md:ml-4">
               <Link href="https://apps.apple.com/gr/app/aegean-taxi-ride-app/id6447252101">
                 <Image
                   src={appstoreIconSrc}
@@ -186,7 +160,9 @@ export default function Navbar() {
                 />
               </Link>
             </div>
-            <button onClick={() => setIsOpen(true)} className="p-2 xl:hidden">
+
+            {/* Mobile Menu Button (visible only on mobile) */}
+            <button onClick={() => setIsOpen(true)} className="p-2 md:hidden">
               <span className="sr-only">Open menu</span>
               <Image src={menuIconSrc} width={20} height={20} alt="Menu Icon" />
             </button>
@@ -197,11 +173,11 @@ export default function Navbar() {
       {/* --- MOBILE MENU (Unchanged) --- */}
       <div
         onClick={() => setIsOpen(false)}
-        className={`fixed inset-0 bg-black/60 z-40 transition-opacity duration-300 xl:hidden
+        className={`fixed inset-0 bg-black/60 z-40 transition-opacity duration-300 md:hidden
                    ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
       />
       <div
-        className={`fixed top-0 left-0 h-full w-[90%] max-w-sm bg-white z-50 transition-transform duration-300 ease-in-out xl:hidden
+        className={`fixed top-0 left-0 h-full w-[90%] max-w-sm bg-white z-50 transition-transform duration-300 ease-in-out md:hidden
                    ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="p-6">
