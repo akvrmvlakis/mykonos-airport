@@ -3,22 +3,19 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    // This <main> tag correctly takes up the full available screen height
-    // because of the `flex-1` in our layout. It is also a flex column.
-    <main className="flex-1 flex flex-col">
+    // THE FIX: The max-width and horizontal auto-margin are now applied here,
+    // creating a centered container for the entire page.
+    <main className="flex-1 flex flex-col w-full max-w-[1920px] mx-auto">
       {/*
-        This single <div> is now our entire hero section.
-        The min-h-[100dvh] fixes mobile viewport height issues.
+        --- HERO SECTION ---
+        This section now fills the width of the main container.
       */}
-      <div className="flex-1 flex flex-col justify-center items-center text-center px-4 pt-24 pb-12 bg-[linear-gradient(207.86deg,_#2A54EF,_#234BD4,_#113286,_#0B2146)] min-h-[100dvh]">
+      <section className="flex-1 flex flex-col justify-center items-center text-center px-4 xl:px-8 pt-24 pb-12 bg-[linear-gradient(207.86deg,_#2A54EF,_#234BD4,_#113286,_#0B2146)] min-h-[100dvh]">
         {/*
-          This container is now a responsive grid.
-          - On mobile (default): It's a single-column grid, with items centered.
-          - On desktop (xl:): It becomes a 2-column grid.
+          This inner container no longer needs a max-width, as its parent handles it.
         */}
-        <div className="max-w-screen-2xl w-full grid grid-cols-1 xl:grid-cols-2 gap-y-10 xl:gap-x-16 items-center">
+        <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-10 xl:gap-x-16 items-center">
           {/* --- Top Element --- */}
-          {/* On desktop, this is explicitly placed in the first column */}
           <div className="max-w-[311px] xl:min-w-full justify-self-center xl:justify-self-start xl:col-start-1">
             <h1 className="font-bold text-white text-start text-[30px] xl:text-8xl">
               Mykonos travel guide and information
@@ -26,9 +23,7 @@ export default function Home() {
           </div>
 
           {/* --- Middle Element (Images) --- */}
-          {/* This grid container now holds responsive wrappers for each image */}
           <div className="grid place-items-end -mb-4 justify-self-center xl:justify-self-end xl:col-start-2 xl:row-start-1 xl:row-span-3">
-            {/* Wrapper for the first image with responsive sizing */}
             <div className="relative w-[227px] h-[213px] xl:w-[440px] xl:h-[420px] -translate-y-16 z-0">
               <Image
                 src="/images/travel-information-vector.svg"
@@ -37,8 +32,6 @@ export default function Home() {
                 style={{ objectFit: "contain" }}
               />
             </div>
-
-            {/* Wrapper for the second image with responsive sizing */}
             <div className="relative w-[95px] h-[94px] xl:w-[180px] xl:h-[179px] -translate-y-6 xl:translate-y-4 z-10 row-start-1 col-start-1">
               <Image
                 src="/images/travel-guide-vector.svg"
@@ -50,7 +43,6 @@ export default function Home() {
           </div>
 
           {/* --- Bottom Element --- */}
-          {/* On desktop, this is explicitly placed in the first column */}
           <div className="flex flex-col justify-start items-center xl:items-start xl:col-start-1">
             <h2 className="text-white text-start text-xl xl:text-3xl font-medium max-w-xl">
               The ultimate up to date Mykonos travel guide, through the
@@ -59,7 +51,6 @@ export default function Home() {
           </div>
 
           {/* --- WhatsApp Button --- */}
-          {/* On desktop, this is explicitly placed in the first column */}
           <div className="justify-self-center xl:justify-self-start xl:col-start-1">
             <div className="inline-flex items-center gap-3 bg-white rounded-xl p-1">
               <Image
@@ -79,7 +70,43 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* --- SECOND SECTION --- */}
+      <section className="w-full grid xl:grid-cols-2 items-center">
+        {/* Left Column (Content) */}
+        <div className="flex flex-col justify-evenly items-start text-start px-4 xl:px-8 py-24 bg-[url(/images/mykonos-beach.png)] xl:bg-none bg-no-repeat bg-cover h-full min-h-[80vh] xl:min-h-0">
+          <h1 className="text-[#2B2B6E] text-3xl xl:text-8xl font-bold max-w-md">
+            We know Mykonos!
+          </h1>
+          <p className="font-bold text-base xl:text-3xl max-w-md">
+            We have covered every inch of Mykonos island! Our Mykonos taxi fleet
+            transports tourists in every beach, every restaurant, bar, and every
+            tourist attraction in Mykonos. Our Mykonos Airport transfer and
+            Mykonos Port transfer services welcome and transport thousands of
+            tourists to and from the airport and ports of Mykonos.
+          </p>
+          <button className="inline-flex items-center gap-2 bg-[#2B2B6E] text-white rounded-full px-6 py-3 text-lg font-medium hover:bg-[#21215a] transition-colors">
+            Read more about us
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+        {/* Right Column (Desktop Image) */}
+        <div className="hidden xl:block bg-[url(/images/mykonos-beach.png)] bg-no-repeat bg-cover bg-center h-full min-h-[80vh]">
+          {/* This div is empty because its background provides the visual content on desktop */}
+        </div>
+      </section>
     </main>
   );
 }

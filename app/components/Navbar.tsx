@@ -138,7 +138,7 @@ export default function Navbar() {
           showSolidNav ? "text-black" : "text-white"
         }`}
       >
-        <div className="max-w-screen-2xl mx-auto flex items-center justify-between px-4 py-2 md:py-4">
+        <div className="max-w-[1920px] mx-auto flex items-center justify-between px-4 py-2 xl:py-4 xl:px-8">
           {/* --- Left Column: Logo --- */}
           <div className="flex-1 flex justify-start">
             <Link href="/" className="flex items-center">
