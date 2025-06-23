@@ -28,7 +28,7 @@ export default function Airport() {
           This inner container no longer needs a max-width, as its parent handles it.
           The order classes will rearrange content for mobile.
         */}
-        <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-10 xl:gap-x-16 items-center">
+        <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-4 xl:gap-y-10 xl:gap-x-16 items-center">
           {/* --- Top Element --- */}
           {/* Order 1 on all screens */}
           <div className="order-3 max-w-sm xl:min-w-full justify-self-center xl:justify-self-start xl:col-start-1">
@@ -54,10 +54,10 @@ export default function Airport() {
 
           {/* --- Form Container (Right Column on Desktop) --- */}
           {/* Order 4 on mobile, but resets on desktop to be placed by grid rules */}
-          <div className="order-4 xl:order-none grid place-items-center justify-self-center xl:justify-self-center xl:col-start-2 xl:row-start-1 xl:row-span-3">
+          <div className="xl:min-w-0 order-4 xl:order-none grid place-items-center justify-self-center xl:justify-self-center xl:col-start-2 xl:row-start-1 xl:row-span-3">
             <Link href="https://aegeantaxi.com/book-online/mykonos-taxi/">
-              <Card className="w-full xl:min-w-xl text-start">
-                <CardHeader>
+              <Card className="min-w-[350px] xl:min-w-xl text-start">
+                <CardHeader className="hidden xl:block">
                   <CardTitle>Book a Transfer</CardTitle>
                   <CardDescription>
                     Instantly book your ride for now or later.
