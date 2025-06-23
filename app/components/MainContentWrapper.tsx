@@ -13,7 +13,7 @@ export default function MainContentWrapper({
 
   // Conditionally set the padding class
   // On the homepage, there's no top padding. On all other pages, `pt-24` is added.
-  // const mainClasses = isHomePage ? "" : "pt-2";
+  const mainClasses = isHomePage ? "" : "";
 
-  return <main>{children}</main>;
+  return <main className={mainClasses}>{children}</main>;
 }
