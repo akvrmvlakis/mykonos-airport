@@ -53,7 +53,7 @@ export default function Home() {
 
           {/* --- WhatsApp Button --- */}
           <div className="justify-self-center xl:justify-self-start xl:col-start-1">
-            <div className="inline-flex items-center gap-3 bg-white rounded-xl p-1">
+            <div className="inline-flex items-center gap-3 bg-white rounded-xl p-2">
               <Image
                 src="/images/whatsapp.svg"
                 alt="Contact us on WhatsApp"
