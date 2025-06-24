@@ -2,6 +2,7 @@
 
 "use client";
 
+import { Autour_One } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -152,8 +153,8 @@ export default function Navbar() {
                 <Image
                   src={logoSrc}
                   alt="Aegean Taxi Logo"
-                  fill
                   style={{ objectFit: "contain" }}
+                  fill={true}
                 />
               </div>
             </Link>

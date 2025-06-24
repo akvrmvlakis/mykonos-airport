@@ -43,8 +43,8 @@ export default function Port() {
             <Image
               src="/images/mykonos-port-vector.svg"
               alt="Mykonos Airport"
-              fill
               className="object-contain"
+              fill={true}
             />
           </div>
 

@@ -46,8 +46,9 @@ export default function Airport() {
             <Image
               src="/images/mykonos-airport-vector.svg"
               alt="Mykonos Airport"
-              fill
               className="object-contain"
+              width={402}
+              height={271}
             />
           </div>
 

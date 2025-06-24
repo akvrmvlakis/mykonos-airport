@@ -75,6 +75,13 @@ export default function GettingAroundPage() {
                 fill
                 className="object-contain"
               />
+              <Image
+                src="/images/baggage-vector.svg"
+                alt="Baggage"
+                width={109}
+                height={166}
+                className="hidden xl:block absolute top-120 left-16"
+              />
             </div>
           </div>
 

@@ -29,16 +29,16 @@ export default function Home() {
               <Image
                 src="/images/travel-information-vector.svg"
                 alt="Travel information map icon"
-                fill
                 style={{ objectFit: "contain" }}
+                fill={true}
               />
             </div>
             <div className="relative w-[95px] h-[94px] xl:w-[180px] xl:h-[179px] -translate-y-6 xl:translate-y-4 z-10 row-start-1 col-start-1">
               <Image
                 src="/images/travel-guide-vector.svg"
                 alt="Travel guide icon"
-                fill
                 style={{ objectFit: "contain" }}
+                fill={true}
               />
             </div>
           </div>
