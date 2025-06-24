@@ -42,7 +42,7 @@ export default function Airport() {
 
           {/* --- NEW Image for Mobile --- */}
           {/* THE FIX: Added -mx-4 to counteract the parent's px-4 and make the image full-width */}
-          <div className="order-2 xl:hidden relative w-full h-[30vh] -mx-4">
+          <div className="order-2 xl:hidden relative w-full h-[30vh] -mx-5">
             <Image
               src="/images/mykonos-airport-vector.svg"
               alt="Mykonos Airport"
