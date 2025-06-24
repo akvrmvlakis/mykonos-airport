@@ -51,7 +51,7 @@ export default function GettingAroundPage() {
           {/* --- Right Column & Mobile Image Container --- */}
           <div className="order-2">
             {/* Image for Mobile Only */}
-            <div className="relative w-full h-[30vh] xl:hidden">
+            <div className="relative w-full h-[30vh] xl:hidden -mt-12">
               <Image
                 src="/images/mykonos-view-vector.svg"
                 alt="Mykonos View"
@@ -80,7 +80,7 @@ export default function GettingAroundPage() {
 
           {/* --- WhatsApp Button (Mobile Only) --- */}
           {/* This is the new element, ordered to be last on mobile */}
-          <div className="order-3 justify-self-center xl:hidden pt-6">
+          <div className="order-3 justify-self-center xl:hidden pt-12">
             <div className="inline-flex items-center gap-3 bg-gray-200 rounded-xl p-2">
               <Image
                 src="/images/whatsapp.svg"
