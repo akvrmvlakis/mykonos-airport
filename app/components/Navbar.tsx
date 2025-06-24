@@ -60,31 +60,41 @@ export default function Navbar() {
   // --- STATE FOR MOBILE MENU ---
   const [isOpen, setIsOpen] = useState(false);
 
-  // --- STATE FOR SCROLL EFFECT ---
+  // --- STATE FOR SCROLL EFFECT & HYDRATION FIX ---
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  // THE FIX: This effect runs only once on the client, after hydration.
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   // --- EFFECT TO HANDLE SCROLLING ON HOMEPAGE ---
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    // Only run this logic if the component has mounted on the client
+    if (hasMounted) {
+      const handleScroll = () => {
+        if (window.scrollY > 50) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+      };
 
-    if (isHomePage) {
-      window.addEventListener("scroll", handleScroll);
-      handleScroll(); // Set initial state on mount
-    }
-
-    // Cleanup function
-    return () => {
       if (isHomePage) {
-        window.removeEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll);
+        // Set initial state on mount
+        handleScroll();
       }
-    };
-  }, [isHomePage]);
+
+      // Cleanup function
+      return () => {
+        if (isHomePage) {
+          window.removeEventListener("scroll", handleScroll);
+        }
+      };
+    }
+  }, [isHomePage, hasMounted]); // The effect now also depends on the mounted state
 
   // --- EFFECT TO PREVENT SCROLLING WHEN MOBILE MENU IS OPEN ---
   useEffect(() => {
@@ -99,7 +109,8 @@ export default function Navbar() {
   }, [isOpen]);
 
   // --- COMBINED LOGIC FOR NAVBAR APPEARANCE ---
-  const showSolidNav = !isHomePage || isScrolled;
+  // THE FIX: We also check `hasMounted`. The server will always render the initial (unscrolled) state.
+  const showSolidNav = (!isHomePage || isScrolled) && hasMounted;
   const navTheme = showSolidNav ? "dark" : "light";
 
   const baseNavClasses =
@@ -142,7 +153,6 @@ export default function Navbar() {
           {/* --- Left Column: Logo --- */}
           <div className="flex justify-start">
             <Link href="/" className="flex items-center">
-              {/* THE FIX: Wrapped the icon in a sized, relative container */}
               <div className="relative w-5 h-5 flex-shrink-0">
                 <Image
                   src={logoPolygonSrc}
@@ -191,7 +201,6 @@ export default function Navbar() {
             </Link>
             <button onClick={() => setIsOpen(true)} className="p-2 md:hidden">
               <span className="sr-only">Open menu</span>
-              {/* THE FIX: Wrapped the icon in a sized, relative container */}
               <div className="relative w-5 h-5">
                 <Image
                   src={menuIconSrc}
