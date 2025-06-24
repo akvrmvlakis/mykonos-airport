@@ -2,7 +2,6 @@
 
 "use client";
 
-import { Autour_One } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
