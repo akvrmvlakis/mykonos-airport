@@ -1,7 +1,4 @@
-// src/app/airport/page.tsx
-
 import Image from "next/image";
-// --- 1. Import Card, Input, Label, and Button components from shadcn/ui ---
 import {
   Card,
   CardContent,
@@ -12,24 +9,13 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Link from "next/link"; // Import Link for the WhatsApp button
+import Link from "next/link";
 
 export default function Airport() {
   return (
-    // The main container is a flex column.
     <main className="flex-1 flex flex-col w-full max-w-[1920px] mx-auto">
-      {/*
-        --- HERO SECTION ---
-        This section now fills the width of the main container.
-      */}
       <section className="flex-1 flex flex-col justify-center items-center text-center px-4 xl:px-8 pt-24 pb-12 min-h-[100dvh]">
-        {/*
-          This inner container no longer needs a max-width, as its parent handles it.
-          The order classes will rearrange content for mobile.
-        */}
         <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-4 xl:gap-y-10 xl:gap-x-16 items-center">
-          {/* --- Top Element --- */}
-          {/* Order 1 on all screens */}
           <div className="order-3 max-w-sm xl:min-w-full justify-self-center xl:justify-self-start xl:col-start-1">
             <h1 className="font-bold text-black text-start text-[30px] xl:text-8xl hidden xl:block">
               Mykonos airport information
@@ -39,9 +25,6 @@ export default function Airport() {
               Mykonos airport, for now or later.
             </h2>
           </div>
-
-          {/* --- NEW Image for Mobile --- */}
-          {/* THE FIX: Added -mx-4 to counteract the parent's px-4 and make the image full-width */}
           <div className="order-2 xl:hidden relative w-full h-[30vh] -mx-5">
             <Image
               src="/images/mykonos-airport-vector.svg"
@@ -51,9 +34,6 @@ export default function Airport() {
               height={271}
             />
           </div>
-
-          {/* --- Form Container (Right Column on Desktop) --- */}
-          {/* Order 4 on mobile, but resets on desktop to be placed by grid rules */}
           <div className="xl:min-w-0 order-4 xl:order-none grid place-items-center justify-self-center xl:justify-self-center xl:col-start-2 xl:row-start-1 xl:row-span-3">
             <Link href="https://aegeantaxi.com/">
               <Card className="min-w-[350px] xl:min-w-xl text-start">
@@ -88,9 +68,6 @@ export default function Airport() {
               </Card>
             </Link>
           </div>
-
-          {/* --- Bottom Element --- */}
-          {/* Order 3 on mobile, but resets on desktop */}
           <div className="order-1 xl:order-3 flex flex-col justify-start items-center xl:items-start xl:col-start-1">
             <h2 className="hidden xl:block text-black text-start text-xl xl:text-3xl font-medium max-w-xl">
               Book a ride to and from Mykonos airport, for now or later.
@@ -99,9 +76,6 @@ export default function Airport() {
               Mykonos Airport (JMK)
             </h2>
           </div>
-
-          {/* --- WhatsApp Button --- */}
-          {/* Order 5 on mobile, but resets on desktop */}
           <div className="order-5 xl:order-4 hidden xl:block justify-self-center xl:justify-self-start xl:col-start-1">
             <div className="inline-flex items-center gap-3 bg-gray-200 rounded-xl p-2">
               <Image

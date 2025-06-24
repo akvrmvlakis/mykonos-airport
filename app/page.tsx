@@ -1,29 +1,17 @@
-// src/app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    // THE FIX: The max-width and horizontal auto-margin are now applied here,
-    // creating a centered container for the entire page.
     <main className="flex-1 flex flex-col w-full max-w-[1920px] mx-auto">
-      {/*
-        --- HERO SECTION ---
-        This section now fills the width of the main container.
-      */}
       <section className="flex-1 flex flex-col justify-center items-center text-center px-4 xl:px-8 pt-24 pb-12 bg-[linear-gradient(207.86deg,_#2A54EF,_#234BD4,_#113286,_#0B2146)] min-h-[100dvh]">
-        {/*
-          This inner container no longer needs a max-width, as its parent handles it.
-        */}
         <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-10 xl:gap-x-16 items-center">
-          {/* --- Top Element --- */}
           <div className="max-w-[311px] xl:min-w-full justify-self-center xl:justify-self-start xl:col-start-1">
             <h1 className="font-bold text-white text-start text-[30px] xl:text-8xl">
               Mykonos travel guide and information
             </h1>
           </div>
 
-          {/* --- Middle Element (Images) --- */}
           <div className="grid place-items-end -mb-4 justify-self-center xl:justify-self-end xl:col-start-2 xl:row-start-1 xl:row-span-3">
             <div className="relative w-[227px] h-[213px] xl:w-[440px] xl:h-[420px] -translate-y-16 z-0">
               <Image
@@ -43,7 +31,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* --- Bottom Element --- */}
           <div className="flex flex-col justify-start items-center xl:items-start xl:col-start-1">
             <h2 className="text-white text-start text-xl xl:text-3xl font-medium max-w-xl">
               The ultimate up to date Mykonos travel guide, through the
@@ -51,31 +38,30 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* --- WhatsApp Button --- */}
-          <div className="justify-self-center xl:justify-self-start xl:col-start-1">
-            <div className="inline-flex items-center gap-3 bg-white rounded-xl p-2">
-              <Image
-                src="/images/whatsapp.svg"
-                alt="Contact us on WhatsApp"
-                width={50}
-                height={50}
-              />
-              <div className="flex flex-col text-left">
-                <span className="text-xs opacity-90 leading-tight text-black me-4">
-                  Click here to contact us directly on
-                </span>
-                <span className="text-xl font-bold leading-tight text-black">
-                  WhatsApp
-                </span>
+          <Link href="https://web.whatsapp.com/">
+            <div className="justify-self-center xl:justify-self-start xl:col-start-1">
+              <div className="inline-flex items-center gap-3 bg-white rounded-xl p-2">
+                <Image
+                  src="/images/whatsapp.svg"
+                  alt="Contact us on WhatsApp"
+                  width={50}
+                  height={50}
+                />
+                <div className="flex flex-col text-left">
+                  <span className="text-xs opacity-90 leading-tight text-black me-4">
+                    Click here to contact us directly on
+                  </span>
+                  <span className="text-xl font-bold leading-tight text-black">
+                    WhatsApp
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
 
-      {/* --- SECOND SECTION --- */}
       <section className="w-full grid xl:grid-cols-2 items-center">
-        {/* Left Column (Content) */}
         <div className="flex flex-col justify-evenly items-start text-start px-4 xl:px-8 py-24 bg-[url(/images/mykonos-beach.png)] xl:bg-none bg-no-repeat bg-cover h-full min-h-[90vh]">
           <h1 className="text-[#2B2B6E] text-3xl xl:text-8xl font-bold max-w-md">
             We know Mykonos!
@@ -103,21 +89,15 @@ export default function Home() {
             </svg>
           </button>
         </div>
-        {/* Right Column (Desktop Image) */}
-        <div className="hidden xl:block bg-[url(/images/mykonos-beach.png)] bg-no-repeat bg-cover bg-center h-full min-h-[90vh]">
-          {/* This div is empty because its background provides the visual content on desktop */}
-        </div>
+        <div className="hidden xl:block bg-[url(/images/mykonos-beach.png)] bg-no-repeat bg-cover bg-center h-full min-h-[90vh]"></div>
       </section>
 
-      {/* --- THIRD SECTION (Statistics) --- */}
       <section className="w-full flex flex-col items-center justify-between text-start px-4 xl:px-8 py-24 bg-gray-200 min-h-[90vh]">
         <h1 className="text-[#2B2B6E] text-3xl xl:text-6xl max-w-xl font-bold ">
           Mykonos statistics (2024)
         </h1>
-        {/* Statistics Grid */}
         <div className="w-full max-w-4xl space-y-8">
           <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
-            {/* Column 1 */}
             <div className="flex flex-col items-center space-y-2 p-4">
               <div className="relative h-16 w-16">
                 <Image
@@ -135,7 +115,6 @@ export default function Home() {
                 <p className="text-lg">arrivals</p>
               </div>
             </div>
-            {/* Column 2 */}
             <div className="flex flex-col items-center space-y-2 p-4 border-l border-black">
               <div className="relative h-16 w-16">
                 <Image
@@ -153,7 +132,6 @@ export default function Home() {
                 <p className="text-lg">trips</p>
               </div>
             </div>
-            {/* Column 3 */}
             <div className="flex flex-col items-center space-y-2 p-4 border-l border-black">
               <div className="relative h-16 w-16">
                 <Image
@@ -175,7 +153,6 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-3 gap-4 md:gap-8 text-center">
-            {/* Column 4 */}
             <div className="flex flex-col items-center space-y-2 p-4">
               <div className="relative h-16 w-16">
                 <Image
@@ -193,7 +170,6 @@ export default function Home() {
                 <p className="text-lg">covered</p>
               </div>
             </div>
-            {/* Column 5 */}
             <div className="flex flex-col items-center space-y-2 p-4 border-l border-black">
               <div className="relative h-16 w-16">
                 <Image
@@ -211,7 +187,6 @@ export default function Home() {
                 <p className="text-lg">visited</p>
               </div>
             </div>
-            {/* Column 6 */}
             <div className="flex flex-col items-center space-y-2 p-4 border-l border-black">
               <div className="relative h-16 w-16">
                 <Image

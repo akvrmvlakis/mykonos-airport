@@ -1,13 +1,10 @@
-// src/app/components/Navbar.tsx
-
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react"; // Import useState and useEffect
+import { useState, useEffect } from "react";
 
-// Helper component for navigation links inside the drawer (user's changes preserved)
 const NavLink = ({
   href,
   children,
@@ -28,12 +25,11 @@ const NavLink = ({
   );
 };
 
-// Helper component for the new desktop navigation links
 const DesktopNavLink = ({
   href,
   children,
   isHomePage,
-  isScrolled, // Pass down the scrolled state
+  isScrolled,
 }: {
   href: string;
   children: React.ReactNode;
@@ -57,46 +53,26 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
-  // --- STATE FOR MOBILE MENU ---
   const [isOpen, setIsOpen] = useState(false);
-
-  // --- STATE FOR SCROLL EFFECT & HYDRATION FIX ---
   const [isScrolled, setIsScrolled] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
 
-  // THE FIX: This effect runs only once on the client, after hydration.
   useEffect(() => {
     setHasMounted(true);
   }, []);
 
-  // --- EFFECT TO HANDLE SCROLLING ON HOMEPAGE ---
   useEffect(() => {
-    // Only run this logic if the component has mounted on the client
-    if (hasMounted) {
-      const handleScroll = () => {
-        if (window.scrollY > 50) {
-          setIsScrolled(true);
-        } else {
-          setIsScrolled(false);
-        }
-      };
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
 
-      if (isHomePage) {
-        window.addEventListener("scroll", handleScroll);
-        // Set initial state on mount
-        handleScroll();
-      }
-
-      // Cleanup function
-      return () => {
-        if (isHomePage) {
-          window.removeEventListener("scroll", handleScroll);
-        }
-      };
+    if (isHomePage) {
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => window.removeEventListener("scroll", handleScroll);
     }
-  }, [isHomePage, hasMounted]); // The effect now also depends on the mounted state
+  }, [isHomePage]);
 
-  // --- EFFECT TO PREVENT SCROLLING WHEN MOBILE MENU IS OPEN ---
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("overflow-hidden");
@@ -108,9 +84,7 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  // --- COMBINED LOGIC FOR NAVBAR APPEARANCE ---
-  // THE FIX: We also check `hasMounted`. The server will always render the initial (unscrolled) state.
-  const showSolidNav = (!isHomePage || isScrolled) && hasMounted;
+  const showSolidNav = hasMounted && (!isHomePage || isScrolled);
   const navTheme = showSolidNav ? "dark" : "light";
 
   const baseNavClasses =
@@ -150,8 +124,7 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-[1920px] mx-auto flex items-center justify-between px-4 py-2 xl:py-4 xl:px-8">
-          {/* --- Left Column: Logo --- */}
-          <div className="flex justify-start">
+          <div className="flex-1 flex justify-start">
             <Link href="/" className="flex items-center">
               <div className="relative w-5 h-5 flex-shrink-0">
                 <Image
@@ -171,8 +144,6 @@ export default function Navbar() {
               </div>
             </Link>
           </div>
-
-          {/* --- Center Column: Desktop Navigation --- */}
           <nav className="hidden md:flex items-center gap-4">
             {menuItems.map((item) => (
               <DesktopNavLink
@@ -185,9 +156,7 @@ export default function Navbar() {
               </DesktopNavLink>
             ))}
           </nav>
-
-          {/* --- Right Column: App Store & Mobile Menu Button --- */}
-          <div className="flex justify-end items-center gap-2">
+          <div className="flex-1 flex justify-end items-center">
             <Link
               href="https://apps.apple.com/gr/app/aegean-taxi-ride-app/id6447252101"
               className="relative block w-[115px] h-[45px] md:w-[125px] md:h-[55px]"
@@ -213,16 +182,17 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-
-      {/* --- MOBILE MENU (Unchanged) --- */}
+      {/* Mobile Menu */}
       <div
         onClick={() => setIsOpen(false)}
-        className={`fixed inset-0 bg-black/60 z-40 transition-opacity duration-300 md:hidden
-                   ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 bg-black/60 z-40 transition-opacity duration-300 md:hidden ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       />
       <div
-        className={`fixed top-0 left-0 h-full w-[90%] max-w-sm bg-white z-50 transition-transform duration-300 ease-in-out md:hidden
-                   ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed top-0 left-0 h-full w-[90%] max-w-sm bg-white z-50 transition-transform duration-300 ease-in-out md:hidden ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <div className="p-6">
           <div className="flex justify-between items-center mb-8">
