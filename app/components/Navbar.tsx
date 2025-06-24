@@ -105,7 +105,9 @@ export default function Navbar() {
 
   const baseNavClasses =
     "w-full fixed top-0 py-1 z-30 transition-all duration-300 ease-in-out";
-  const backgroundClasses = showSolidNav ? "bg-white" : "bg-transparent";
+  const backgroundClasses = showSolidNav
+    ? "bg-white shadow-md"
+    : "bg-transparent";
 
   const menuIconSrc =
     navTheme === "light"
@@ -141,20 +143,23 @@ export default function Navbar() {
       >
         <div className="max-w-[1920px] mx-auto flex items-center justify-between px-4 py-2 xl:py-4 xl:px-8">
           {/* --- Left Column: Logo --- */}
-          <div className="flex-1 flex justify-start">
+          <div className="flex justify-start">
             <Link href="/" className="flex items-center">
-              <Image
-                src={logoPolygonSrc}
-                width={20}
-                height={20}
-                alt="Aegean Taxi Logo Polygon"
-              />
+              {/* THE FIX: Wrapped the icon in a sized, relative container */}
+              <div className="relative w-5 h-5 flex-shrink-0">
+                <Image
+                  src={logoPolygonSrc}
+                  alt="Aegean Taxi Logo Polygon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
               <div className="relative w-[150px] h-[22px] md:w-[156px] md:h-[24px] -ms-2 xl:-ms-1">
                 <Image
                   src={logoSrc}
                   alt="Aegean Taxi Logo"
-                  style={{ objectFit: "contain" }}
-                  fill={true}
+                  fill
+                  sizes="(max-width: 768px) 150px, 156px"
                 />
               </div>
             </Link>
@@ -175,23 +180,29 @@ export default function Navbar() {
           </nav>
 
           {/* --- Right Column: App Store & Mobile Menu Button --- */}
-          <div className="flex-1 flex justify-end items-center">
-            <div className="relative w-[115px] h-[45px] md:w-[125px] md:h-[55px]">
-              <Link href="https://apps.apple.com/gr/app/aegean-taxi-ride-app/id6447252101">
-                <Image
-                  src={appstoreIconSrc}
-                  alt="Apple App Store Icon"
-                  fill
-                  style={{ objectFit: "contain" }}
-                />
-              </Link>
-            </div>
-            <button
-              onClick={() => setIsOpen(true)}
-              className="p-2 md:hidden ml-2"
+          <div className="flex justify-end items-center gap-2">
+            <Link
+              href="https://apps.apple.com/gr/app/aegean-taxi-ride-app/id6447252101"
+              className="relative block w-[115px] h-[45px] md:w-[125px] md:h-[55px]"
             >
+              <Image
+                src={appstoreIconSrc}
+                alt="Apple App Store Icon"
+                fill
+                sizes="(max-width: 768px) 115px, 125px"
+              />
+            </Link>
+            <button onClick={() => setIsOpen(true)} className="p-2 md:hidden">
               <span className="sr-only">Open menu</span>
-              <Image src={menuIconSrc} width={20} height={20} alt="Menu Icon" />
+              {/* THE FIX: Wrapped the icon in a sized, relative container */}
+              <div className="relative w-5 h-5">
+                <Image
+                  src={menuIconSrc}
+                  alt="Menu Icon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </button>
           </div>
         </div>
