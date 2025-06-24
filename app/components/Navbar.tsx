@@ -104,9 +104,7 @@ export default function Navbar() {
 
   const baseNavClasses =
     "w-full fixed top-0 py-1 z-30 transition-all duration-300 ease-in-out";
-  const backgroundClasses = showSolidNav
-    ? "bg-white shadow-md"
-    : "bg-transparent";
+  const backgroundClasses = showSolidNav ? "bg-white" : "bg-transparent";
 
   const menuIconSrc =
     navTheme === "light"
