@@ -116,10 +116,45 @@ export default function Home() {
           <h1 className="text-[#2B2B6E] text-3xl xl:text-6xl max-w-xl font-bold ">
             Our Services in Mykonos island
           </h1>
-          <p className="font-medium text-base xl:text-3xl max-w-md">
+          <p className="font-medium text-base xl:text-3xl max-w-md text-[#4A4A51]">
             Operating since 2015, Aegean Taxi offers a comprehensive set of
             transportation services for Mykonos
           </p>
+
+          <div className="flex flex-col space-y-2">
+            {/* Row 1 */}
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/car-vector.svg" // <-- Replace with your SVG's path
+                alt="Feature icon"
+                width={24} // Adjust size as needed
+                height={24} // Adjust size as needed
+              />
+              <p>100+ Cars</p>
+            </div>
+
+            {/* Row 2 */}
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/layer-vector.svg" // <-- Replace with your SVG's path
+                alt="Feature icon"
+                width={24}
+                height={24}
+              />
+              <p>4 car categories</p>
+            </div>
+
+            {/* Row 3 */}
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/gear-vector.svg" // <-- Replace with your SVG's path
+                alt="Feature icon"
+                width={24}
+                height={24}
+              />
+              <p>24/7 operations</p>
+            </div>
+          </div>
           {/* The parent container is now full-width on mobile and has a max-width on xl screens */}
           <div className="flex flex-col text-start text-xl w-full xl:max-w-sm">
             {/* Each Link is now a full-width flex container with a bottom border */}

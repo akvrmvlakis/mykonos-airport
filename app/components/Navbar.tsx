@@ -134,7 +134,7 @@ export default function Navbar() {
                   className="object-contain"
                 />
               </div>
-              <div className="relative w-[150px] h-[22px] md:w-[156px] md:h-[24px] -ms-2 xl:-ms-1">
+              <div className="relative w-[150px] h-[22px] md:w-[156px] md:h-[24px] -ms-2 xl:-ms-1.5">
                 <Image
                   src={logoSrc}
                   alt="Aegean Taxi Logo"
