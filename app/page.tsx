@@ -30,8 +30,7 @@ export default function Home() {
                 src="/images/travel-information-vector.svg"
                 alt="Travel information map icon"
                 style={{ objectFit: "contain" }}
-                width={227}
-                height={213}
+                fill
               />
             </div>
             <div className="relative w-[95px] h-[94px] xl:w-[180px] xl:h-[179px] -translate-y-6 xl:translate-y-4 z-10 row-start-1 col-start-1">
@@ -39,8 +38,7 @@ export default function Home() {
                 src="/images/travel-guide-vector.svg"
                 alt="Travel guide icon"
                 style={{ objectFit: "contain" }}
-                width={500}
-                height={500}
+                fill
               />
             </div>
           </div>

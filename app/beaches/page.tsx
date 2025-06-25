@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
+import PillSelector from "@/components/PillSelector"; // Import the new component
 
 export default function Beaches() {
   return (
@@ -52,7 +56,7 @@ export default function Beaches() {
         </div>
       </section>
 
-      <section className="relative flex-1 flex flex-col justify-start xl:justify-center items-center text-center xl:px-8 pt-8 xl:pt-24 pb-12 rounded-t-[38px] -mt-16 bg-white min-h-[100dvh] xl:min-h-[80dvh]">
+      <section className="relative flex-1 flex flex-col justify-start xl:justify-center items-center text-center xl:px-8 pt-8 xl:pt-24 rounded-t-[38px] -mt-16 bg-white min-h-[100dvh] xl:min-h-[80dvh]">
         <div className="absolute inset-0 xl:hidden"></div>
         <div className="relative z-10 w-full grid grid-cols-1 xl:grid-cols-2 gap-y-4 xl:gap-y-10 xl:gap-x-16 items-center">
           <div className="order-1 flex flex-col justify-start gap-8 px-4 xl:px-0">
@@ -84,6 +88,14 @@ export default function Beaches() {
                 fill={true}
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative flex-1 flex flex-col justify-start xl:justify-center items-center text-center px-4 xl:px-8 pt-8 xl:pt-24 pb-12 rounded-t-[38px] -mt-16 bg-white min-h-[100dvh] xl:min-h-[80dvh]">
+        <div className="relative z-10 w-full flex flex-col items-center">
+          <div className="w-full">
+            <PillSelector />
           </div>
         </div>
       </section>
