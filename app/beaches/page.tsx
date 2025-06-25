@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 import PillSelector from "@/components/PillSelector"; // Import the new component
 
 export default function Beaches() {
