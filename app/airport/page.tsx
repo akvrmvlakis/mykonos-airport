@@ -35,7 +35,7 @@ export default function Airport() {
             />
           </div>
           <div className="xl:min-w-0 order-4 xl:order-none grid place-items-center justify-self-center xl:justify-self-center xl:col-start-2 xl:row-start-1 xl:row-span-3">
-            <Link href="https://aegeantaxi.com/">
+            <Link href="https://aegeantaxi.com/airport-transfers/mykonos/">
               <Card className="min-w-[350px] xl:min-w-xl text-start">
                 <CardHeader className="hidden xl:block">
                   <CardTitle>Book a Transfer</CardTitle>

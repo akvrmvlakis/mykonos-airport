@@ -1,6 +1,8 @@
 // src/app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
+// import FaqAccordion from "@/components/FaqAccordion";
+import FeatureGrid from "@/components/FeatureGrid";
 
 export default function Home() {
   return (
@@ -116,7 +118,7 @@ export default function Home() {
           <h1 className="text-[#2B2B6E] text-3xl xl:text-6xl max-w-xl font-bold ">
             Our Services in Mykonos island
           </h1>
-          <p className="font-medium text-base xl:text-3xl max-w-md text-[#4A4A51]">
+          <p className="font-medium text-base xl:text-3xl max-w-md text-[#4A4A51] pt-4">
             Operating since 2015, Aegean Taxi offers a comprehensive set of
             transportation services for Mykonos
           </p>
@@ -250,7 +252,7 @@ export default function Home() {
         </div>
         {/* Right Column (Desktop Image) */}
         {/* Replaced justify-evenly with justify-between */}
-        <div className="min-h-[90vh] flex flex-col justify-between items-start text-start px-4 xl:px-8 py-24">
+        <div className="min-h-[90vh] flex flex-col justify-between items-start text-start px-4 xl:px-8 pt-24">
           <h1 className="text-[#2B2B6E] text-3xl xl:text-6xl font-bold">
             Mykonos statistics (2024)
           </h1>
@@ -378,22 +380,28 @@ export default function Home() {
             </div>
           </div>
 
-          <button className="inline-flex items-center gap-2 bg-[#2B2B6E] text-white rounded-full px-6 py-3 text-lg font-medium hover:bg-[#21215a] transition-colors">
-            Download Mykonos Statistics
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 3a1 1 0 011 1v11.586l4.293-4.293a1 1 0 111.414 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 15.586V4a1 1 0 011-1z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
+          <div className="xl:pb-16">
+            <button className="inline-flex items-center gap-2 bg-[#2B2B6E] text-white rounded-full px-6 py-3 text-lg font-medium hover:bg-[#21215a] transition-colors">
+              Download Mykonos Statistics
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 3a1 1 0 011 1v11.586l4.293-4.293a1 1 0 111.414 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 15.586V4a1 1 0 011-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+      </section>
+
+      <section>
+        <FeatureGrid />
       </section>
     </main>
   );
