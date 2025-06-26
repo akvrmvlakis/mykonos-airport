@@ -37,7 +37,7 @@ export default function FeatureGrid() {
             Our in depth and up to date{" "}
             <span className="font-bold">knowledge of Mykonos,</span> puts us in
             a unique position of <span className="font-bold">authority,</span>{" "}
-            when it comes to travel itineraries and{" "}
+            when it comes to travel itinneraries and{" "}
             <span className="font-bold">travel advice.</span>
           </TextBlock>
           {/* Image on the right */}
