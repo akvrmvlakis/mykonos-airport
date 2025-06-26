@@ -41,7 +41,8 @@ export default function FaqAccordion() {
             Will i get instant confirmation of my car and driver details
           </AccordionTrigger>
           <AccordionContent>
-            Yes. It's animated by default, but you can disable it if you prefer.
+            Yes. It&apos;s animated by default, but you can disable it if you
+            prefer.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-4">
@@ -49,7 +50,8 @@ export default function FaqAccordion() {
             How can i track my Mykonos Taxi after booking online
           </AccordionTrigger>
           <AccordionContent>
-            Yes. It's animated by default, but you can disable it if you prefer.
+            Yes. It&apos;s animated by default, but you can disable it if you
+            prefer.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-5">
@@ -57,7 +59,8 @@ export default function FaqAccordion() {
             How can i find a taxi or transfer in Mykonos?
           </AccordionTrigger>
           <AccordionContent>
-            Yes. It's animated by default, but you can disable it if you prefer.
+            Yes. It&apos;s animated by default, but you can disable it if you
+            prefer.
           </AccordionContent>
         </AccordionItem>
       </Accordion>

@@ -54,11 +54,11 @@ export default function FeatureGrid() {
           />
           {/* Text on the right */}
           <TextBlock>
-            <span className="font-bold">Every year,</span> we compile a{" "}
-            <span className="font-bold">list</span> of all the{" "}
-            <span className="font-bold">popular places</span> per category in{" "}
-            <span className="font-bold">Mykonos,</span> and we are happy to{" "}
-            <span className="font-bold">share</span> these in the sections
+            <span className="font-bold">Every year,</span> we compile a
+            <span className="font-bold"> list</span> of all the
+            <span className="font-bold"> popular places</span> per category in
+            <span className="font-bold"> Mykonos,</span> and we are happy to
+            <span className="font-bold"> share</span> these in the sections
             below.
           </TextBlock>
 
@@ -66,10 +66,10 @@ export default function FeatureGrid() {
           {/* Text on the left */}
           <TextBlock>
             Our <span className="font-bold">Mykonos travel blog</span> is the
-            product of <span className="font-bold">data</span> gathering and{" "}
-            <span className="font-bold">analysis</span> of thousands of{" "}
-            <span className="font-bold">rides</span> from our{" "}
-            <span className="font-bold">Mykonos Taxi fleet.</span> we hope you
+            product of <span className="font-bold">data</span> gathering and
+            <span className="font-bold"> analysis</span> of thousands of
+            <span className="font-bold"> rides</span> from our
+            <span className="font-bold"> Mykonos Taxi fleet.</span> we hope you
             find these useful
           </TextBlock>
           {/* Image on the right */}
