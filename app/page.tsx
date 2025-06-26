@@ -121,7 +121,7 @@ export default function Home() {
             transportation services for Mykonos
           </p>
 
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-2 py-6">
             {/* Row 1 */}
             <div className="flex items-center gap-3">
               <Image
